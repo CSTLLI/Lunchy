@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse} from "next";
 import { NextResponse } from "next/server";
+import {Meal} from "@prisma/client";
 
 /**
  * @swagger
@@ -22,7 +23,7 @@ import { NextResponse } from "next/server";
  */
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
     const id = res.params.id;
-    const ingredient = await prisma.ingredient.findUnique({
+    const ingredient = await prisma.ingredient.findUniqueOrThrow({
         where: { id: Number(id) },
     });
     if (!ingredient) {
@@ -60,23 +61,26 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
  *       404:
  *         description: Ingredient not found
  */
-export async function PUT(req: NextApiRequest, res: NextApiResponse) {
-    const { id } = req.query;
-    const { name } = req.body;
-    if (!name) {
-        return NextResponse.json( { message: "Name is required" }, { status: 400 });
-    }
+export async function PUT(req: Request, res: NextApiResponse) {
+    const id = res.params.id;
+    const { label, weight, meals } = await req.json();
     const existingIngredient = await prisma.ingredient.findUnique({
         where: { id: Number(id) },
+        include: { meals: true }
     });
     if (!existingIngredient) {
         return NextResponse.json({ message: "Ingredient not found" }, { status: 404 });
     }
+
     const updatedIngredient = await prisma.ingredient.update({
         where: { id: Number(id) },
-        data: { label : req.body.label },
+        data: {
+            label,
+            weight,
+            meals,
+        },
     });
-    return NextResponse.json(updatedIngredient, { status: 200});
+    return NextResponse.json(updatedIngredient, { status: 200 });
 }
 
 /**
@@ -98,7 +102,7 @@ export async function PUT(req: NextApiRequest, res: NextApiResponse) {
  *         description: Ingredient not found
  */
 export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
-    const { id } = req.query;
+    const id = res.params.id;
     const existingIngredient = await prisma.ingredient.findUnique({
         where: { id: Number(id) },
     });

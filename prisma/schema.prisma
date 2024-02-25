@@ -2,71 +2,71 @@
 // apprenez-en davantage à ce sujet dans la documentation: https://pris.ly/d/prisma-schema
 
 generator client {
-	provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-	provider = "mysql"
-	url      = env("DATABASE_URL")
+    provider = "mysql"
+    url      = env("DATABASE_URL")
 }
 
 model User {
-	id         Int      @id @default(autoincrement())
-	firstname  String
-	lastname   String?
-	email      String   @unique
-	password   String
-	role_id    Int
-	role       UserRole @relation(fields: [role_id], references: [id])
-	created_at DateTime @default(now())
-	updated_at DateTime @updatedAt
+    id         Int      @id @default(autoincrement())
+    firstname  String
+    lastname   String?
+    email      String   @unique
+    password   String
+    role_id    Int
+    role       UserRole @relation(fields: [role_id], references: [id])
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
 }
 
 model UserRole {
-	id    Int    @id @default(autoincrement())
-	label String
-	users User[]
+    id    Int    @id @default(autoincrement())
+    label String
+    users User[]
 }
 
 model Ingredient {
-	id                 Int                  @id @default(autoincrement())
-	label              String
-	weight             Float?
-	created_at         DateTime             @default(now())
-	updated_at         DateTime             @updatedAt
-	meals              IngredientsOnMeals[]
-	stockOfIngredients StockOfIngredients[]
+    id                 Int                  @id @default(autoincrement())
+    label              String
+    weight             Float?
+    created_at         DateTime             @default(now())
+    updated_at         DateTime             @updatedAt
+    meals              IngredientsOnMeals[]
+    stockOfIngredients StockOfIngredients[]
 }
 
 model Meal {
-	id           Int                  @id @default(autoincrement())
-	label        String
-	price        Float
-	created_at   DateTime             @default(now())
-	updated_at   DateTime             @updatedAt
-	ingredients  IngredientsOnMeals[]
-	StockOfMeals StockOfMeals[]
+    id           Int                  @id @default(autoincrement())
+    label        String
+    price        Float
+    created_at   DateTime             @default(now())
+    updated_at   DateTime             @updatedAt
+    ingredients  IngredientsOnMeals[]
+    StockOfMeals StockOfMeals[]
 }
 
 model IngredientsOnMeals {
-	ingredient    Ingredient @relation(fields: [ingredient_id], references: [id])
-	ingredient_id Int
-	meal          Meal       @relation(fields: [meal_id], references: [id])
-	meal_id       Int
-	created_at    DateTime   @default(now())
-	updated_at    DateTime   @updatedAt
+    ingredient    Ingredient @relation(fields: [ingredient_id], references: [id])
+    ingredient_id Int
+    meal          Meal       @relation(fields: [meal_id], references: [id])
+    meal_id       Int
+    created_at    DateTime   @default(now())
+    updated_at    DateTime   @updatedAt
 
-	@@id([ingredient_id, meal_id])
+    @@id([ingredient_id, meal_id])
 }
 
 model StockOfIngredients {
-	ingredient_id Int        @id
-	amount        Int
-	ingredient    Ingredient @relation(fields: [ingredient_id], references: [id])
+    ingredient_id Int        @id
+    amount        Int
+    ingredient    Ingredient @relation(fields: [ingredient_id], references: [id])
 }
 
 model StockOfMeals {
-	meal_id Int  @id
-	amount  Int
-	meal    Meal @relation(fields: [meal_id], references: [id])
+    meal_id Int  @id
+    amount  Int
+    meal    Meal @relation(fields: [meal_id], references: [id])
 }

@@ -11,7 +11,7 @@ import { NextResponse } from "next/server";
  *       200:
  *         description: Get all ingredients
  */
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
     const ingredients = await prisma.ingredient.findMany();
     return NextResponse.json(ingredients);
 }
@@ -38,15 +38,16 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
  *       400:
  *         description: Bad request
  */
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-    const { label, weight } = req.body;
+export async function POST(req: Request, res: NextApiResponse) {
+    const { label, weight, meals } = await req.json();
     if (!label) {
         return NextResponse.json({ message: "Label is required" }, { status: 400 });
     }
     const ingredient = await prisma.ingredient.create({
         data: {
             label,
-            weight
+            weight,
+            meals
         },
     });
     return NextResponse.json(ingredient);
