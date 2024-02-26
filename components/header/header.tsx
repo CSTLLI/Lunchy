@@ -11,8 +11,6 @@ import Image from "next/image";
 export default async function Header() {
   const navigation = [
     { key: "Home", value: "" },
-    { key: "About", value: "features" },
-    { key: "Pricing", value: "pricing" },
   ] as INavLink[];
 
   const session = await getServerSession();
@@ -39,13 +37,6 @@ export default async function Header() {
                 </div>
                 <div className="mx-6 ">
                   <NavElements navigationLinks={navigation} />
-                </div>
-                <div className="ml-auto flex items-center space-x-4">
-                  <Link href="/register" className="">
-                  <Button variant="brown" >
-                      Register
-                    </Button>
-                  </Link>
                 </div>
               </>
             )}

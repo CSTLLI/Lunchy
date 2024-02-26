@@ -3,7 +3,6 @@ import "@/styles/globals.css";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
-import { Suspense } from "react";
 import Header from "@/components/header/header";
 
 const inter = Inter({
@@ -11,24 +10,16 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const title = "Next.js Prisma Postgres Auth Starter";
+const title = "Lunchy";
 const description =
-  "This is a Next.js starter kit that uses Next-Auth for simple email + password login and a Postgres database to persist the data.";
+  "Commandez votre plat avec grâce à vos cryptos-monnaies!";
 
 export const metadata: Metadata = {
   title,
   description,
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-  },
-  metadataBase: new URL("https://nextjs-postgres-auth.vercel.app"),
-  creator: "shadcn",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+
+  metadataBase: new URL("https://lunchy.xyz"),
+  creator: "cstlli",
 };
 
 export default async function RootLayout({
@@ -40,11 +31,8 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.variable}>
         <Toaster />
-        <Suspense fallback="Loading...">
-          <Header />
-        </Suspense>
+        <Header />
         {children}
-
       </body>
     </html>
   );
