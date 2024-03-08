@@ -71,7 +71,7 @@ model UserRole {
 	users User[]
 }
 
-model Product {
+model Meal {
 	id              Int     @id @default(autoincrement())
 	label           String
 	price           Float
@@ -81,12 +81,40 @@ model Product {
 	created_at DateTime @default(now())
 	updated_at DateTime @updatedAt
 
-	ProductsOrdered ProductsOrdered[]
+	ProductsOrdered    ProductsOrdered[]
+	IngredientsOnMeals IngredientsOnMeals[]
 }
 
 model CategoryProduct {
 	id    Int    @id @default(autoincrement())
 	label String
+}
+
+model Ingredient {
+	id                 Int                  @id @default(autoincrement())
+	label              String
+	weight             Float?
+	created_at         DateTime             @default(now())
+	updated_at         DateTime             @updatedAt
+	meals              IngredientsOnMeals[]
+	stockOfIngredients StockOfIngredients[]
+}
+
+model IngredientsOnMeals {
+	ingredient    Ingredient @relation(fields: [ingredient_id], references: [id])
+	ingredient_id Int
+	meal          Meal       @relation(fields: [meal_id], references: [id])
+	meal_id       Int
+	created_at    DateTime   @default(now())
+	updated_at    DateTime   @updatedAt
+
+	@@id([ingredient_id, meal_id])
+}
+
+model StockOfIngredients {
+	ingredient_id Int        @id
+	amount        Int
+	ingredient    Ingredient @relation(fields: [ingredient_id], references: [id])
 }
 
 model Order {
@@ -106,8 +134,8 @@ model ProductsOrdered {
 	created_at DateTime @default(now())
 	updated_at DateTime @updatedAt
 
-	order   Order   @relation(fields: [order_id], references: [id])
-	product Product @relation(fields: [product_id], references: [id])
+	order   Order @relation(fields: [order_id], references: [id])
+	product Meal  @relation(fields: [product_id], references: [id])
 
 	@@id([order_id, product_id])
 }
