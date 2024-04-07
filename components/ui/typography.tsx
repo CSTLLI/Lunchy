@@ -8,8 +8,9 @@ interface TypographyProps extends React.HTMLAttributes<HTMLElement>, VariantProp
 
 const typographyVariants = {
     h1: "scroll-m-20 text-6xl mt-4 font-extrabold tracking-tight lg:text-5xl text-primary-color-dark",
-    h2: "",
-    h3: "w-56 h-[23px] text-lg font-bold tracking-[2.70px] leading-[22.40px] text-primary-color-dark",
+    h2: "scroll-m-20 text-3xl mt-4 font-bold tracking-tight lg:text-3xl text-primary-color-dark",
+    h3: "text-md font-bold tracking-[2.70px] leading-[22.40px] text-primary-color uppercase",
+    h4: "text-lg font-bold text-primary-color-dark",
 }
 
 const Typography: React.FC<TypographyProps> =
