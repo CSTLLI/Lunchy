@@ -1,48 +1,31 @@
-import { getServerSession } from "next-auth/next";
-import ProfileSwitcher from "../ui/nav/profile-switcher";
-import { UserNav } from "../ui/nav/user-nav";
-import { NavElements } from "../ui/nav/nav-elements";
-import { INavLink } from "../interface/INavLink";
-import { Button } from "../ui/button";
+import {getServerSession} from "next-auth/next";
+import {NavElements} from "../ui/nav/nav-elements";
+import {Button} from "@/components/ui/button";
+import {INavLink} from "../interface/INavLink";
 import Link from "next/link";
-import Router from "next/navigation";
 import Image from "next/image";
 
 export default async function Header() {
-  const navigation = [
-    { key: "Home", value: "" },
-  ] as INavLink[];
+    const navigation = [
+        {key: "A propos de Lunchy", value: ""},
+        {key: "Menus", value: "menus"},
+        {key: "Contact", value: ""}
+    ] as INavLink[];
 
-  const session = await getServerSession();
+    const session = await getServerSession();
 
-  return (
-    <>
-      <div className="hidden flex-col md:flex">
-        <div className="border-b">
-          <div className="flex h-16 items-center px-4">
-            {(session && session.user && (
-              <>
-                <ProfileSwitcher className="" session={session} />
-                <div className="mx-6">
-                  <NavElements navigationLinks={navigation} />
-                </div>
-                <div className="ml-auto flex items-center space-x-4">
-                  <UserNav />
-                </div>
-              </>
-            )) || (
-              <>
-                <div className="flex items-center space-x-6 ">
-                  <Image src="/logo.png" alt="logo" width={48} height={48} />
-                </div>
-                <div className="mx-6 ">
-                  <NavElements navigationLinks={navigation} />
-                </div>
-              </>
-            )}
-          </div>
+    return (
+        <div className="flex md:flex justify-between items-center bg-dark-blue">
+            <div className="flex h-16 items-center px-4 gap-3">
+                <Link href="/" className="flex items-center space-x-6 ">
+                    <Image src="/logo.png" alt="logo" width={64} height={64}/>
+                    <h2 className="font-bold">Lunchy</h2>
+                </Link>
+            </div>
+            <div className="mx-6">
+                <NavElements navigationLinks={navigation}/>
+            </div>
+            <Button>Se connecter</Button>
         </div>
-      </div>
-    </>
-  );
+    );
 }

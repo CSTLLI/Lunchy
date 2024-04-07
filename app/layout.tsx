@@ -28,10 +28,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.variable}>
-        <Toaster />
-        <Header />
+    <html lang="en" suppressHydrationWarning>
+      <body className="bg-secondary-color">
         {children}
       </body>
     </html>

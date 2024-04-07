@@ -10,7 +10,7 @@ export function NavElements({ navigationLinks }: { navigationLinks: INavLink[] }
             <Link
             key={link.key}
             href={`/${link.value}`}
-            className="text-sm font-medium transition-colors hover:text-primary"
+            className="text-sm font-medium transition-colors hover:text-primary-color"
             >
             {link.key}
             </Link>

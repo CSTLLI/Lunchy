@@ -10,6 +10,13 @@ const config = {
     './src/**/*.{ts,tsx}',
 	],
   plugins: [shadcnPlugin],
+  theme: {
+    colors: {
+      'primary-color': '#F1AB40',
+      'primary-color-dark': '#192534',
+      'secondary-color': '#FEEED4'
+    }
+  }
 };
 
 export default config;
