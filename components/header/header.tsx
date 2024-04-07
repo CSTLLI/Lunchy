@@ -15,11 +15,11 @@ export default async function Header() {
     const session = await getServerSession();
 
     return (
-        <div className="flex md:flex justify-between items-center bg-dark-blue">
+        <div className="flex md:flex justify-between items-center">
             <div className="flex h-16 items-center px-4 gap-3">
                 <Link href="/" className="flex items-center space-x-6 ">
                     <Image src="/logo.png" alt="logo" width={64} height={64}/>
-                    <h2 className="font-bold">Lunchy</h2>
+                    <h2 className="font-bold text-primary-color-dark">Lunchy</h2>
                 </Link>
             </div>
             <div className="mx-6">

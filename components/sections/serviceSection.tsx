@@ -21,7 +21,7 @@ const ServicesDetails = [
 ]
 const serviceSection = () => {
     return (
-        <section className="flex-col my-4 mt-12 bg-blue gap-2 text-center self-center px-12">
+        <section className="flex-col my-4 mt-12 gap-2 text-center self-center px-12">
             <Typography variant="h3">A propos de nous</Typography>
 
             <Typography variant="h2">Elevez votre pause déjeuner avec <span
