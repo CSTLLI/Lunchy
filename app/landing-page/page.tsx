@@ -6,9 +6,9 @@ import Footer from "@/components/footer/footer";
 const LandingPage = () => {
     return (
         <div className="container p-6">
-            {/* <Header/> 
+            <Header/> 
             <HeroSection/>
-            <ServiceSection /> */}
+            <ServiceSection />
             <Footer />
         </div>
     )

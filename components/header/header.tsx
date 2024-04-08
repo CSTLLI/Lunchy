@@ -12,7 +12,7 @@ export default async function Header() {
         {key: "Contact", value: ""}
     ] as INavLink[];
 
-    const session = await getServerSession();
+    // const session = await getServerSession();
 
     return (
         <div className="flex md:flex justify-between items-center">
