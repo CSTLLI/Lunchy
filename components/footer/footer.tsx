@@ -16,7 +16,7 @@ const Footer = () => {
             <div className="flex flex-col gap-4">
                 <Typography variant="h3">A propos de nous</Typography>
                 <ul className="flex flex-col gap-2">
-                    <li><Link href="/">L'équipe</Link></li>
+                    <li><Link href="/">La team</Link></li>
                     <li><Link href="/">Fonctionnalités</Link></li>
                     <li><Link href="/">Nouveautés</Link></li>
                     <li><Link href="/">Menu</Link></li>
