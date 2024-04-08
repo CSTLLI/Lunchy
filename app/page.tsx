@@ -8,13 +8,7 @@ export default function Home() {
   const [isLoading, setLoading] = useState(false)
   return (
     <>
-      { isLoading &&
-          <Loader/>
-      }
-      {
-        !isLoading &&
-          <LandingPage/>
-      }
+      <h1>test</h1>
     </>
   );
 }
