@@ -8,7 +8,7 @@ export default function Home() {
   const [isLoading, setLoading] = useState(false)
   return (
     <>
-      <h1>test</h1>
+      <LandingPage/>
     </>
   );
 }
