@@ -6,10 +6,10 @@ import Footer from "@/components/footer/footer";
 const LandingPage = () => {
     return (
         <div className="container p-6">
-            <Header/>
-            {/* <HeroSection/>
+            <Header/> 
+            <HeroSection/>
             <ServiceSection />
-            <Footer /> */}
+            <Footer />
         </div>
     )
 }
