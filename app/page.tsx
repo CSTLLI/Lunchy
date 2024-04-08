@@ -7,7 +7,7 @@ import LandingPage from "@/app/landing-page/landing";
 import Header from "@/components/header/header";
 import HeroSection from "@/components/sections/heroSection";
 import ServiceSection from "@/components/sections/serviceSection";
-import Footer from "@/components/footer/footer"; s
+import Footer from "@/components/footer/footer";
 
 export default function Home() {
 	const [isLoading, setLoading] = useState(false)
